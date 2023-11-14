@@ -38,7 +38,11 @@ This must be done via a `Glib::Dispatcher`, since it's not safe to call widget m
 
 ## Demo and building
 
-The cell renderer is demonstrated with a small program that populates the view with 
+The cell renderer is demonstrated with a small program that populates the model with many rows.
+The user can watch the computed values being filled in successively.
+Trace output in the console shows that only those values that would be visible are computed.
+Buttons for scrolling to the top/middle/bottom of the view can be used to check.
+Press `ESC` to exit.
 
 Build with meson:
 ```sh
