@@ -25,6 +25,7 @@ This class contains
 * A queue of values to be processed
 * A hash map for memoisation
 * A worker thread that consumes values from the queue and stores the results in the hash map
+ 
 Both the queue and the hash map must be thread-safe: the queue (hash map) is written to (read) by the Gtk main thread and consumed (written to) by the worker thread.
 The standard library's queue and hash map are wrapped together with a mutex to achieve this.
 (Only the operations needed are implemented.)
@@ -33,6 +34,7 @@ The actual rendering is done in the virtual method `render_vfunc`.
 We override this in `LazyCellRenderer`:
 * If the computed value exists in the hash map, set the `text` property and call `render_vfunc` on the parent class.
 * Otherwise, enqueue `id` for the worker thread to consume.
+ 
 Once the computation finishes, Gtk must be told to redraw the view.
 This must be done via a `Glib::Dispatcher`, since it's not safe to call widget methods from outside the Gtk main thread.
 
